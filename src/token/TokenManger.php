@@ -35,7 +35,7 @@ class TokenManger
     public function __construct()
     {
         $config = admin_config('admin.token');
-        $this->key = $config['key'];
+        $this->key = request()->domain().$config['key'];
         $this->expire = $config['expire'];
         $this->unique = $config['unique'];
         $this->authField = $config['auth_field'];
