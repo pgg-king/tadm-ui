@@ -35,6 +35,9 @@ class TokenManger
     public function __construct()
     {
         $config = admin_config('admin.token');
+        if(empty($config['key'])){
+            throw new AuthException('请登陆', 40000);
+        }
         $this->key = request()->domain().$config['key'];
         $this->expire = $config['expire'];
         $this->unique = $config['unique'];
